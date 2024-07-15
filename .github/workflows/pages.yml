@@ -13,8 +13,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs # Use docs directory
+        github_token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_dir: ./docs
+        force_orphan: true
